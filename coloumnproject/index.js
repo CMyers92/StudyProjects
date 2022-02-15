@@ -12,25 +12,29 @@ let sum = 0;
 
 
 //Keep track of last x coord
-let lastPointX = 0;
-//let lastPointY = 0;
+let lastPointX = col[0];
+let lastPointY = 0;
 
 
 
 //Calculate Sum / Percentage
 for (let i = 0; i < col.length; i++) {
     sum += col[i];
+    //
     console.log("Sum:" + sum);
 }
 //getting perctage of each value of col in relation to the sum(redundant?)
-/*
+
  for(let i = 0; i < col.length; i++){
     
     
     result = percent(col[i],sum);
     //console.log(result);
+    
+}
+ let newXCoord = col[0];
 
-}*/
+
 //imput decimal value into draw function, increase last value variables, repeat.
 for(let i = 0; i < col.length; i++){
     
@@ -38,20 +42,23 @@ for(let i = 0; i < col.length; i++){
     /*DrawTool(
         x = currentWidth
         y = currentHeight
-        x2 = currentHeight + (col[i] sum)
+        x2 = currentWidth + (col[i] sum)
         y2 = currentHeight
     )
       increase increaseLastValues based on currentWidth / sum
-    */
-   lastPointX += percent(col[i], sum); 
-    DrawTool(lastPointX, maxHeight,);
+    */ 
+    console.log('old x coord: ' + newXCoord);
+    DrawTool(lastPointX, maxHeight,newXCoord,maxHeight);
+    newXCoord = lastPointX * percent(col[i], sum);
+    console.log('Current Index: ' + col[i]);
+    console.log('new x coord: ' + newXCoord);
+    
 }
 }
 
 //percentage calculator
 function percent(parVal, totVal){
-    result = (parVal / totVal) ;
-   // console.log("%" + result*100);
+    result = (parVal / totVal) * sum;
     return result;
 }
 
@@ -67,6 +74,15 @@ function increaseLastValues(curVal, newVal){
     result = curVal + newVal;
     return result;
 }
+
+
+
+
+
+
+
+
+
 
 
 Run();
