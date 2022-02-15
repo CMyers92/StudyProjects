@@ -1,4 +1,9 @@
 //Use the array figure out size of each coloumn as the numbers relate to each other
+let sum = 0;
+
+
+
+
 
 function Run(){
 let col = [2,1,4,3];
@@ -7,8 +12,7 @@ let col = [2,1,4,3];
 let maxHeight = 16;
 let maxWidth = 500;
 
-//finding the sum to find each col value percent
-let sum = 0;
+
 
 
 //Keep track of last x coord
@@ -86,3 +90,4 @@ function increaseLastValues(curVal, newVal){
 
 
 Run();
+
