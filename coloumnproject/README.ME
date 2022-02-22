@@ -1,0 +1,82 @@
+let sum = 0;
+
+
+
+
+function Run(){
+     //Use the array figure out size of each coloumn as the numbers relate to each other
+let col = [2,1,4,3];
+
+//dimensions of box
+let maxHeight = 16;
+let maxWidth = 500;
+
+
+
+
+//Keep track of last x coord
+let lastPointX = col[0];
+let lastPointY = 0;
+
+
+
+//Calculate Sum / Percentage
+for (let i = 0; i < col.length; i++) {
+    sum += col[i];
+    //
+    console.log("Sum:" + sum);
+}
+//getting perctage of each value of col in relation to the sum(redundant?)
+
+ for(let i = 0; i < col.length; i++){
+    
+    
+    result = percent(col[i],sum);
+    //console.log(result);
+    
+}
+ let newXCoord = col[0];
+
+
+//imput decimal value into draw function, increase last value variables, repeat.
+for(let i = 0; i < col.length; i++){
+    
+    //DrawTool(_x,_y,_x2,_y2)
+    /*DrawTool(
+        x = currentWidth
+        y = currentHeight
+        x2 = currentWidth + (col[i] sum)
+        y2 = currentHeight
+    )
+      increase increaseLastValues based on currentWidth / sum
+    */ 
+    console.log('old x coord: ' + newXCoord);
+    DrawTool(lastPointX, maxHeight,newXCoord,maxHeight);
+    newXCoord = lastPointX * percent(col[i], sum);
+    console.log('Current Index: ' + col[i]);
+    console.log('new x coord: ' + newXCoord);
+    
+}
+}
+
+//percentage calculator
+
+function percent(parVal, totVal){
+    result = (parVal / totVal) * sum;
+    return result;
+}
+
+
+
+//box dimensions, fill in the blank
+function DrawTool(_x,_y,_x2,_y2){
+    console.log(_x+","+ _y + " "+_x2+","+_y2);
+}
+
+
+function increaseLastValues(curVal, newVal){
+    result = curVal + newVal;
+    return result;
+}
+
+Run();
