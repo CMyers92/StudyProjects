@@ -37,7 +37,9 @@ for(i = 0; i < col.length; i++){
 
     DrawTool(lastPointX,0,lastPointX,maxHeight);
     newPointX = lastPointX;
-    lastPointX += percentCalc(maxWidth,sum);
+    lastPointX += percentCalc(lastPointX,sum);
+
+
 
 }
 
