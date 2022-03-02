@@ -6,36 +6,64 @@ let canvas = document.getElementById('grid');
 let ctx = canvas.getContext('2d');
 
 
+//
+
 
 function Run(){
-     //Use the array figure out size of each coloumn as the numbers relate to each other
+     //Use the array figure out size of each line as the numbers relate to each other
+     //run each col index thru percent calc, previous index are previous nums
 let col = [2,1,4,3];
 
-//dimensions of box
+//dimensions of line
 let maxHeight = 16;
 let maxWidth = 500;
 
 //store prior points
 let lastPointX = 0;
 let lastPointY = 0;
+let newPointX = 0;
+let newPointY = 0;
 
-//calculate sum
-for (let i = 0; i < col.length; i++){
+//calc sum
+for(i = 0;i < col.length; i++){
     sum += col[i];
-   
+    
 }
-console.log("Sum: " + sum);
+
+
+//apply sum to maxLength / macHeight
+for(i = 0; i < col.length; i++){
+    //draw initial point, calc new point draw repeat
+
+    DrawTool(lastPointX,0,lastPointX,maxHeight);
+    newPointX = lastPointX;
+    lastPointX += percentCalc(maxWidth,sum);
+
+}
+
 
 
 
 }
+
+
+
+
+
+
+
 
 //line dimensions
 function DrawTool(_x,_y,_x2,_y2){
     console.log(_x+","+ _y + " "+_x2+","+_y2);
     
+
+
+
+
+    //my extra - ignore for now
     //just going to actually draw lines cause fuck it
-    ctx.beginPath();
+    ctx.beginPath(); 
     ctx.moveTo(_x, _y); //startpoint - drawTool x & y ?   
     ctx.lineTo(_x2,_y2);//End Point - drawTool x2 & y2 ?
     ctx.stroke();
@@ -47,30 +75,13 @@ function DrawTool(_x,_y,_x2,_y2){
 
 
 
+
 //percentage calculator
 function percentCalc(preVal, sumVal){
-    result = (preVal/sumVal) * sum;
+    //
+    result = (preVal/sumVal) * 100;
     return result;
 }
-
-//forgot what I was planning here
-function percentIndexCal(index,perc){
-    result = (index)
-}
-
-//cuz fuck it
-function DrawLine(spx,spy,epx,epy){
-    //spx = startpointx,spy = startpointY,epx = endpointX, epy = endpointY
-    ctx.beginPath();
-    ctx.moveTo(spx, spy); //startpoint - drawTool x & y ?
-    ctx.lineTo(epx,epy);//End Point - drawTool x2 & y2 ?
-    ctx.stroke();
-    //draw x,y text
-    ctx.font = '10px comic-sans';
-    ctx.fillText("(" + spx + " , " + spy + ")",spx + 5,spy + 20);
-    ctx.fillText("(" + epx + " , " + epy + ")",epx + 5,epy);
-} 
-
 
 Run();
 
